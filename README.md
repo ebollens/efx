@@ -139,10 +139,13 @@ longer impose this constraint.
 
 Efx is written and maintained by Eric Bollens.
 
-Efx would not be possible without the good work of several other projects:
+Efx is implemented as a jQuery (http://jquery.com) module.
 
-* jQuery - http://jquery.com - Efx is implemented as a jQuery module
-* QUnit - http://qunitjs.com - Efx uses QUnit in its test suite
+For unit tests, Efx uses the QUnit (http://qunitjs.com) library.
+
+For its demos, Efx uses Twitter Bootstrap (http://twitter.github.com/bootstrap)
+and the jQuery Syntax Highlighter (https://github.com/balupton/jquery-syntaxhighlighter)
+for presentational styles.
 
 ## 4. License
 

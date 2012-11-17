@@ -3,67 +3,214 @@
     
     <head>
         
-        <title>Example</title>
+        <title>Demo: Toggle</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <!-- Efx engine -->
+        <script src="assets/jquery.js"></script>
         <script src="../src/engine.js"></script>
         
+        <!-- Efx driver: Toggle -->
         <script src="../src/driver/toggle.js"></script>
         <link rel="stylesheet" href="../src/driver/toggle.css">
+        
+        <!-- Assets used for demo presentation only -->
+        <script src="assets/jquery.syntaxhighlighter.js"></script>
+        <link   href="assets/bootstrap.css" rel="stylesheet">
+        <link   href="assets/demo.css" rel="stylesheet">
         
     </head>
     
     <body>
         
-        <h1>Expand</h1>
+        <div class="container-fluid">
         
-        <p>This demo shows uses of <code>data-effect="toggle"</code>.</p>
-        
-        <hr>
-        
-        <button data-target="ex-toggleable">Toggle</button>
-        
-        <div id="ex-toggleable" data-effect="toggle">
-            This is an toggleable content area.
-        </div>
-        
-        <hr>
-        
-        <button data-target="ex-toggled">Toggle</button>
-        
-        <div id="ex-toggled" data-effect="toggle" data-toggle="show">
-            This is an toggleable content area with <code>data-toggle="show"</code>.
-        </div>
-        
-        <hr>
-        
-        <button data-target=".ex-toggleable">Toggle Multiple</button>
-        
-        <div id="ex-toggleable-class-ele-1" class="ex-toggleable" data-effect="toggle">
-            This is one of two toggleable content areas targeted by a class for <code>data-target</code>.
-        </div>
-        
-        <div id="ex-toggleable-class-ele-2" class="ex-toggleable" data-effect="toggle">
-            This is one of two toggleable content areas targeted by a class for <code>data-target</code>.
-        </div>
-        
-        <hr>
-        
-        <button data-target="ex-toggleable-wrapped">Toggle</button>
-        
-        <div id="ex-toggleable-wrapper" data-effect="toggle">
-            <div id="ex-toggleable-wrapped" data-effect="does-not-exist">
-                This is a content area that is wrapped by <code>data-effect="toggle"</code>
-                with a <code>data-effect</code> on the element itself that does not exist
-                and will thus be bypassed.
+            <h1>Demo: Toggle</h1>
+            
+            <p>The <code>toggle</code> library provides a simple target-trigger
+            interaction whereby, when the trigger is pressed, the visibility
+            of the target will change based on its current state.</p>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;button data-target="ex1"&gt;&lt;!-- trigger text --&gt;&lt;/button&gt;
+
+&lt;div id="ex1" data-effect="toggle"&gt;
+    &lt;!-- toggled content --&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><button data-target="ex1" class="btn">Toggle</button></p>
+                    <div id="ex1" data-effect="toggle" class="well">
+                        This is a simple content area with visibility toggled 
+                        by pressing trigger with <code>data-target="ex1"</code>.
+                    </div>
+                </div>
+                
             </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;button data-target="ex2"&gt;&lt;!-- trigger text --&gt;&lt;/button&gt;
+
+&lt;div id="ex2" data-effect="toggle" data-toggle="show"&gt;
+    &lt;!-- toggled content --&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><button data-target="ex2" class="btn">Toggle</button></p>
+                    <div id="ex2" data-effect="toggle" data-toggle="show" class="well">
+                        This is a simple content area with visibility toggled 
+                        by pressing trigger with <code>data-target="ex1"</code>.
+                        This content area begins visible because of the toggle
+                        property <code>data-toggle="show"</code>.
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;button data-target=".ex3"&gt;&lt;!-- trigger text --&gt;&lt;/button&gt;
+
+&lt;div class="ex3" data-effect="toggle"&gt;
+    &lt;!-- toggled content --&gt;
+&lt;/div&gt;
+
+&lt;div class="ex3" data-effect="toggle"&gt;
+    &lt;!-- toggled content --&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><button data-target=".ex3" class="btn">Toggle</button></p>
+                    <div class="ex3 well" data-effect="toggle">
+                        This is a content area with the class
+                        <code>.ex3</code>. When trigger with 
+                        <code>data-target=".ex3"</code> is pressed, it will
+                        toggle the visibility of this content area.
+                    </div>
+                    <div class="ex3 well" data-effect="toggle">
+                        This is another content area with the class
+                        <code>.ex3</code>. When trigger with 
+                        <code>data-target=".ex3"</code> is pressed, it will
+                        toggle the visibility of this content area.
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;button data-target="ex4"&gt;&lt;!-- trigger text --&gt;&lt;/button&gt;
+
+&lt;div data-effect="toggle"&gt;
+    &lt;div id="ex4"&gt;
+        &lt;!-- toggled content --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><button data-target="ex4" class="btn">Toggle</button></p>
+                    <div data-effect="toggle" class="well">
+                        <div id="ex4">
+                            This is content that is a target for the trigger
+                            with <code>data-target="ex4"</code>. However, it 
+                            does not have a <code>data-effect</code> element. 
+                            This is instead defined on a parent element.
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;button data-target="ex5"&gt;&lt;!-- trigger text --&gt;&lt;/button&gt;
+
+&lt;div id="ex5" data-effect="toggle" data-toggle="slide"&gt;
+    &lt;!-- toggled content --&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><button data-target="ex5" class="btn">Toggle</button></p>
+                    <div id="ex5" data-effect="toggle" data-toggle="slide" class="well">
+                        This is a simple content area with visibility toggled 
+                        by pressing trigger with <code>data-target="ex5"</code>.
+                        It also has a state of <code>data-toggle="slide"</code>,
+                        which means that the toggle effect will slide the
+                        content rather than simply show/hide it.
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;button data-target="ex6"&gt;&lt;!-- trigger text --&gt;&lt;/button&gt;
+
+&lt;div id="ex6" data-effect="toggle" data-toggle="slide show"&gt;
+    &lt;!-- toggled content --&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><button data-target="ex6" class="btn">Basic Toggle</button></p>
+                    <div id="ex6" data-effect="toggle" data-toggle="slide show" class="well">
+                        This is a simple content area with visibility toggled 
+                        by pressing trigger with <code>data-target="ex5"</code>.
+                        This content area begins visible because of the toggle
+                        property <code>data-toggle="show"</code>. It also has a 
+                        state of <code>data-toggle="slide"</code>, which means 
+                        that the toggle effect will slide the content rather 
+                        than simply show/hide it.
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
         </div>
         
         <script>
             $(document).efx('init')
         </script>
+        
+        <script type="text/javascript">$.SyntaxHighlighter.init();</script>
         
     </body>
     
