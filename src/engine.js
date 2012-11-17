@@ -198,7 +198,45 @@
 
         // Run the driver for the effect if it could be resolved
         if(effect){
-            _drivers[effect][event]({'target':target, 'container':container, 'trigger':trigger})
+            _drivers[effect][event]({'target':target, 'container':container, 'trigger':trigger, 'event':event}, new _driver_functions(effect))
+        }
+        
+    }
+    
+    var _driver_functions = function(effect){
+        
+        this.getState = function(element){
+
+            return element.attr('data-'+effect) ? element.attr('data-'+effect).split(' ') : false;
+
+        }
+
+        this.inState = function(element, name){
+
+            var state = this.getState(element)
+            return state ? $.inArray(name, state) >= 0 : false
+
+        }
+
+        this.addState = function(element, name){
+
+            if(this.inState(element, name))
+                return true;
+
+            var state = this.getState(element);
+            if(!state)
+                state = []
+            state.push(name)
+
+            element.attr('data-'+effect, state.join(' '))
+
+        }
+
+        this.removeState = function(element, name){
+
+            if(this.inState(element, name))
+                element.attr('data-'+effect, $.grep(this.getState(element), function(value) { return value != name }).join(' '))
+
         }
         
     }
