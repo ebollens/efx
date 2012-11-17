@@ -15,33 +15,34 @@ module("engine.js", {
         
         var counter = 0
         
-        $(null).efx('add', 'test', function(data){
+        $(null).efx('add', 'test', 'init', function(data){
             
             var container = data.container,
                 target    = data.target,
                 trigger   = data.trigger;
+                
+            $([trigger,target,container]).each(function(){
+                this.attr('data-init', 'true')
+            })
             
-            this.init = function(){
-                
-                $([trigger,target,container]).each(function(){
-                    this.attr('data-init', 'true')
-                })
-                
-            }
+        })
+        
+        $(null).efx('add', 'test', 'click', function(data){
             
-            this.execute = function(){
-                
-                var arr = [target,trigger]
-                
-                if(target[0] !== container[0])
-                    arr.push(container)
-                
-                $(arr).each(function(){
-                    var count = this.attr('data-execute') ? (parseInt(this.attr('data-execute'))+1) : 1
-                    this.attr('data-execute', count)
-                    this.attr('data-execute-last-effect', 'test')
-                })
-            }
+            var container = data.container,
+                target    = data.target,
+                trigger   = data.trigger;
+
+            var arr = [target,trigger]
+
+            if(target[0] !== container[0])
+                arr.push(container)
+
+            $(arr).each(function(){
+                var count = this.attr('data-execute') ? (parseInt(this.attr('data-execute'))+1) : 1
+                this.attr('data-execute', count)
+                this.attr('data-execute-last-effect', 'test')
+            })
             
         })
     },
@@ -49,6 +50,15 @@ module("engine.js", {
     teardown: function() {
         $('#test > *').remove();
     }
+    
+});
+
+test("Driver registered", function() {
+
+    $('#test').efx()
+    
+    ok($(null).efx('supports', 'test'), 'Effect resolved')
+    ok($(null).efx('supports', 'test', 'click'), 'Effect event resolved')
     
 });
 
