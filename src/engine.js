@@ -9,12 +9,12 @@
     $.fn.efx = function(method) {
         
         // Call-forward to method specified by first argument
-        if (EFX[method])
-            return EFX[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+        if (_EFX[method])
+            return _EFX[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
         
         // Fallback to call-forward to init method
         else if (typeof method === 'object' || !method)
-            return EFX.init.apply( this, arguments );
+            return _EFX.init.apply( this, arguments );
         
         // Cannot perform a call-forward so throw error
         else
@@ -24,19 +24,28 @@
     /** 
      * Container holding all drivers that have been added.
      */
-    var drivers = {}
+    var _drivers = {}
+    
+    /**
+     * Container that stores all events that have been registered to any driver.
+     */
+    var _events = []
+    
+    var _has_initialized = false;
     
     /**
      * Methods to which the module will call-forward for $(..).efx(method, ..). 
      */
-    var EFX = {
+    var _EFX = {
         
         /**
          * Initializes Efx on ele for $(ele).efx() or $(ele).efx('init').
          */
         init: function(){
             
-            init(this);
+            init(this)
+            
+            _has_initialized = true
             
         },
         
@@ -44,31 +53,48 @@
          * $(null).efx('add', effect_name, driver) adds driver as the handler
          * for effect_name.
          */
-        add: function(effect, driver){
+        add: function(effect, event, driver){
             
-            if(arguments.length < 2 || typeof driver != 'function')
+            if(arguments.length < 3 || typeof driver != 'function')
                 return;
             
-            drivers[effect] = driver
+            if(_drivers[effect] == undefined)
+                _drivers[effect] = {}
             
+            _drivers[effect][event] = driver
+            
+            if($.inArray(event, _events) < 0){
+                
+                _events.push(event)
+                
+                /** @todo make it possible to add drivers after initialization */
+                if(_has_initialized)
+                    console.log('[Efx] WARNING Driver event added after listeners have already been attached to some element')
+                
+            }
         },
         
         /**
          * $(null).efx('add', effect_name) returns true if effect_name defined.
          */
-        supports: function(effect){
+        supports: function(effect, event){
             
-            return drivers[effect] != undefined
+            return _drivers[effect] != undefined && ( event == undefined || _drivers[effect][event] != undefined )
             
         },
         
         /**
          * $(null).efx('remove', effect_name) removes the driver effect_name.
          */
-        remove: function(effect){
+        remove: function(effect, event){
             
-            if(drivers[effect] != undefined)
-                delete drivers[effect]
+            if(event == undefined){
+                if(_drivers[effect] != undefined)
+                    delete _drivers[effect]
+            }else{
+                if(_drivers[effect][event] != undefined)
+                    delete _drivers[effect][event]
+            }
             
         }
     }
@@ -87,23 +113,25 @@
         triggers.each(function(){
             var trigger = $(this)
             targets_of(trigger).each(function(){
-                init_effect_on($(this), trigger)
+                execute_effect_on('init',$(this), trigger)
             })
         })
         
-        // Attach listeners to the triggers
-        triggers.click(delegate)
+        $(_events).each(function(){
+            if(this != 'init')
+                triggers.bind(this+'', delegate)
+        })
         
     }
     
     /**
      * Click handler that executes a trigger across its targets.
      */
-    function delegate(){
+    function delegate(event){
         
         var trigger = $(this)
         targets_of(trigger).each(function(){
-            execute_effect_on($(this), trigger)
+            execute_effect_on(event.type, $(this), trigger)
         })
         
     }
@@ -127,38 +155,14 @@
      * Runs the init method of the driver for the trigger and its respective
      * targets/containers.
      */
-    function init_effect_on(target, trigger){
-        
-        var driver = driver_for(target, trigger); 
-        if(driver != undefined && driver.init != undefined)
-            driver.init();
-        
-    }
-    
-    /**
-     * Runs the init method of the driver for the trigger and its respective
-     * targets/containers.
-     */
-    function execute_effect_on(target, trigger){
-        
-        var driver = driver_for(target, trigger);
-        if(driver != undefined && driver.execute != undefined)
-            driver.execute();
-        
-    }
-    
-    /**
-     * Factory that constructs a driver for a given target. Trigger is also
-     * provided as an argument since it too is passed to the driver.
-     */
-    function driver_for(target, trigger){
+    function execute_effect_on(event, target, trigger){
         
         var effect = false;
         var container = target;
         
         // Determine if the the target has a valid effect
         if(effect = target.data('effect'))
-            if(!EFX.supports(effect))
+            if(!_EFX.supports(effect, event))
                 effect = false
         
         // Search parents for a valid effect if not on target itself
@@ -167,14 +171,17 @@
             for(var i = 0; i < parents.length && !effect; i++){
                 container = $(parents[i])
                 effect = container.data('effect')
-                if(!EFX.supports(effect))
+                if(!_EFX.supports(effect, event))
                     effect = false
             }
         }
 
         // Builds a driver if effect could be resolved or false otherwise
-        return effect ? new drivers[effect]({'target':target, 'container':container, 'trigger':trigger}) : false
+        if(effect){
+            _drivers[effect][event]({'target':target, 'container':container, 'trigger':trigger})
+        }
         
     }
+    
   
 })( jQuery );
