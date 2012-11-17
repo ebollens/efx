@@ -35,7 +35,7 @@
      * Boolean that tracks whether any elements have been initialized. If they
      * have, then it is unsafe to add further drivers.
      */
-    var _has_initialized = false;
+    var _hasInitialized = false;
     
     /**
      * Methods to which the module will call-forward for $(..).efx(method, ..). 
@@ -49,7 +49,7 @@
             
             init(this)
             
-            _has_initialized = true
+            _hasInitialized = true
             
         },
         
@@ -75,7 +75,7 @@
                 _events.push(event)
                 
                 /** @todo make it possible to add drivers after init */
-                if(_has_initialized){
+                if(_hasInitialized){
                     var str = '[Efx] Driver event added after listeners have already been attached to some element'
                     if(console.warn) console.warn(str)
                     else if(console.log) console.log(str)
@@ -122,8 +122,8 @@
         // Initialize the triggers and their targets
         triggers.each(function(){
             var trigger = $(this)
-            targets_of(trigger).each(function(){
-                execute_effect_on('init',$(this), trigger)
+            targetsOf(trigger).each(function(){
+                executeEffectOn('init',$(this), trigger)
             })
         })
         
@@ -150,8 +150,8 @@
     function delegate(event){
         
         var trigger = $(this)
-        targets_of(trigger).each(function(){
-            execute_effect_on(event.type, $(this), trigger)
+        targetsOf(trigger).each(function(){
+            executeEffectOn(event.type, $(this), trigger)
         })
         
     }
@@ -159,7 +159,7 @@
     /**
      * Determines all targets of a trigger element.
      */
-    function targets_of(trigger){
+    function targetsOf(trigger){
         
         var target = trigger.data('target')
         
@@ -175,7 +175,7 @@
      * Runs the init method of the driver for the trigger and its respective
      * targets/containers.
      */
-    function execute_effect_on(event, target, trigger){
+    function executeEffectOn(event, target, trigger){
         
         var effect = false;
         var container = target;
@@ -198,12 +198,12 @@
 
         // Run the driver for the effect if it could be resolved
         if(effect){
-            _drivers[effect][event]({'target':target, 'container':container, 'trigger':trigger, 'event':event}, new _driver_functions(effect))
+            _drivers[effect][event]({'target':target, 'container':container, 'trigger':trigger, 'event':event}, new _driverFunctions(effect))
         }
         
     }
     
-    var _driver_functions = function(effect){
+    var _driverFunctions = function(effect){
         
         this.getState = function(element){
 
