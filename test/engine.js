@@ -90,6 +90,21 @@ test("Listener attached by class", function() {
     
 });
 
+test("Listener attached to trigger once for multiple initializations", function() {
+    
+    $('<button/>', {'id': 'trigger', 'data-target': 'target'}).appendTo('#test')  
+    $('<div/>', {'id': 'target', 'data-effect': 'test'}).appendTo('#test')
+
+    $('#test').efx()
+    $('#test').efx()
+    $('#test').efx()
+    
+    $('#trigger').click()
+    
+    equal($('#trigger').data('execute'), 1, 'Number of driver invocations for multiple initializations after one event')
+    
+});
+
 test("Effect resolved to parent", function() {
     
     $('<button/>', {'id': 'trigger', 'data-target': 'target'}).appendTo('#test')

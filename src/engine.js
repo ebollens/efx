@@ -129,8 +129,17 @@
         
         // Binds all events that drivers have registered to all triggers
         $(_events).each(function(){
-            if(this != 'init')
-                triggers.bind(this+'', delegate)
+            var event = this+''
+            if(event != 'init')
+                triggers.each(function(){
+                    var trigger = $(this)
+                    var listeners = trigger.data('delegate') ? trigger.data('delegate').split(' ') : []
+                    if($.inArray(event, listeners) < 0){
+                        trigger.bind(event, delegate)
+                        listeners.push(event)
+                    }
+                    trigger.attr('data-delegate', listeners.join(' '))
+                })
         })
         
     }
