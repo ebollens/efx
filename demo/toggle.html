@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        
+        <title>Example</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="../src/engine.js"></script>
+        
+        <script src="../src/driver/toggle.js"></script>
+        <link rel="stylesheet" href="../src/driver/toggle.css">
+        
+    </head>
+    
+    <body>
+        
+        <h1>Expand</h1>
+        
+        <p>This demo shows uses of <code>data-effect="toggle"</code>.</p>
+        
+        <hr>
+        
+        <button data-target="ex-toggleable">Toggle</button>
+        
+        <div id="ex-toggleable" data-effect="toggle">
+            This is an toggleable content area.
+        </div>
+        
+        <hr>
+        
+        <button data-target="ex-toggled">Toggle</button>
+        
+        <div id="ex-toggled" data-effect="toggle" data-toggle="show">
+            This is an toggleable content area with <code>data-toggle="show"</code>.
+        </div>
+        
+        <hr>
+        
+        <button data-target=".ex-toggleable">Toggle Multiple</button>
+        
+        <div id="ex-toggleable-class-ele-1" class="ex-toggleable" data-effect="toggle">
+            This is one of two toggleable content areas targeted by a class for <code>data-target</code>.
+        </div>
+        
+        <div id="ex-toggleable-class-ele-2" class="ex-toggleable" data-effect="toggle">
+            This is one of two toggleable content areas targeted by a class for <code>data-target</code>.
+        </div>
+        
+        <hr>
+        
+        <button data-target="ex-toggleable-wrapped">Toggle</button>
+        
+        <div id="ex-toggleable-wrapper" data-effect="toggle">
+            <div id="ex-toggleable-wrapped" data-effect="does-not-exist">
+                This is a content area that is wrapped by <code>data-effect="toggle"</code>
+                with a <code>data-effect</code> on the element itself that does not exist
+                and will thus be bypassed.
+            </div>
+        </div>
+        
+        <script>
+            $(document).efx('init')
+        </script>
+        
+    </body>
+    
+</html>
