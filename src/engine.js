@@ -31,6 +31,10 @@
      */
     var _events = []
     
+    /**
+     * Boolean that tracks whether any elements have been initialized. If they
+     * have, then it is unsafe to add further drivers.
+     */
     var _has_initialized = false;
     
     /**
@@ -50,8 +54,11 @@
         },
         
         /**
-         * $(null).efx('add', effect_name, driver) adds driver as the handler
-         * for effect_name.
+         * $().efx('add', effect_name, driver) adds driver as the handler for 
+         * effect_name. This should not be invoked after $(ele).efx('init') or 
+         * $(ele).efx() has been called, or the driver will not necessarily
+         * attach event handlers where expected for any ele previous 
+         * initialized.
          */
         add: function(effect, event, driver){
             
@@ -67,15 +74,18 @@
                 
                 _events.push(event)
                 
-                /** @todo make it possible to add drivers after initialization */
-                if(_has_initialized)
-                    console.log('[Efx] WARNING Driver event added after listeners have already been attached to some element')
+                /** @todo make it possible to add drivers after init */
+                if(_has_initialized){
+                    var str = '[Efx] Driver event added after listeners have already been attached to some element'
+                    if(console.warn) console.warn(str)
+                    else if(console.log) console.log(str)
+                }
                 
             }
         },
         
         /**
-         * $(null).efx('add', effect_name) returns true if effect_name defined.
+         * $().efx('add', effect_name) returns true if effect_name defined.
          */
         supports: function(effect, event){
             
@@ -84,7 +94,7 @@
         },
         
         /**
-         * $(null).efx('remove', effect_name) removes the driver effect_name.
+         * $().efx('remove', effect_name) removes the driver effect_name.
          */
         remove: function(effect, event){
             
@@ -117,6 +127,7 @@
             })
         })
         
+        // Binds all events that drivers have registered to all triggers
         $(_events).each(function(){
             if(this != 'init')
                 triggers.bind(this+'', delegate)
@@ -176,7 +187,7 @@
             }
         }
 
-        // Builds a driver if effect could be resolved or false otherwise
+        // Run the driver for the effect if it could be resolved
         if(effect){
             _drivers[effect][event]({'target':target, 'container':container, 'trigger':trigger})
         }
