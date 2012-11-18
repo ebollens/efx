@@ -1,30 +1,30 @@
 # Efx
 
-## 1. Status
+## Status
 
 Efx is currently a WORK IN PROGRESS and not yet intended for production use.
 
-## 2. Overview
+## Overview
 
 Efx is a Javascript library designed to make it easy to implement effects 
 through HTML 5 markup. At its root, it is based on the "trigger-target" 
 paradigm whereby, when a user interacts with a trigger in a defined manner, an 
 effect occurs on its target(s).
 
-### 2.1. Motivation
+### Motivation
 
 The simplest example of an expandable content area:
 
 ```html
 <button data-target="element">Trigger</button>
-<div id="element" data-effect="expand">Target</div>
+<div id="element" data-effect="toggle">Target</div>
 ```
 
 Parent-based resolution of an effect on a target:
 
 ```html
 <button data-target="element">Trigger</button>
-<div data-effect="expand">
+<div data-effect="toggle">
     <div id="element">Target</div>
     <div>Not a target</div>
 </div>
@@ -34,14 +34,14 @@ Selector-based resolution for expanding multiple content areas at once:
 
 ```html
 <button data-target=".element">Trigger</button>
-<div data-effect="expand">
+<div data-effect="toggle">
     <div class="element">One target</div>
     <div>Not a target</div>
     <div class="element">Another target</div>
 </div>
 ```
 
-### 2.2. Dynamics
+### Dynamics
 
 The Efx engine is implemented as a jQuery module.
 
@@ -135,7 +135,58 @@ It should also be noted that all drivers should be attached before Efx is
 initialized over element(s). Efx may be updated later in development to no 
 longer impose this constraint.
 
-## 3. Credits
+## Drivers
+
+### Toggle
+
+The `toggle` driver provides the ability to designate a trigger that toggles 
+the visibility on target(s). If a target is show, then it hides it, while if a
+target is hidden, then it shows it. This driver has no side-effects on the
+container or any of another elements besides the target.
+
+The `data-toggle` attribute supports two visibility states:
+
+* `show` sets a target to be shown
+* `hide` sets a target to be hidden (default state)
+
+The `data-toggle` attribute also supports behavior states:
+
+* `slide` slides the content up and down rather than just showing and hiding it
+* `fade` fades the content in and out rather than just showing and hiding it
+
+Both a visibility and a behavior state may be specified at the same time.
+
+A simple example:
+
+```html
+<button data-target="element">Trigger</button>
+<div id="element" data-effect="toggle">Target</div>
+```
+
+An example that starts with the content visible:
+
+```html
+<button data-target="element">Trigger</button>
+<div id="element" data-effect="toggle" data-toggle="show">Target</div>
+```
+
+An example that slides the content in and out rather than showing and hiding it,
+also starting with the content visible in this particular example:
+
+```html
+<button data-target="element">Trigger</button>
+<div id="element" data-effect="toggle" data-toggle="slide show">Target</div>
+```
+
+An example that fades the content in and out rather than showing and hiding it,
+also starting with the content visible in this particular example:
+
+```html
+<button data-target="element">Trigger</button>
+<div id="element" data-effect="toggle" data-toggle="fade show">Target</div>
+```
+
+## Credits
 
 Efx is written and maintained by Eric Bollens.
 
@@ -147,7 +198,7 @@ For its demos, Efx uses Twitter Bootstrap (http://twitter.github.com/bootstrap)
 and the jQuery Syntax Highlighter (https://github.com/balupton/jquery-syntaxhighlighter)
 for presentational styles.
 
-## 4. License
+## License
 
 Efx is open-source software licensed under the BSD 3-clause license. The full 
 text of the license may be found in the LICENSE file.
