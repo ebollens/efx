@@ -85,11 +85,21 @@
         },
         
         /**
-         * $().efx('add', effect_name) returns true if effect_name defined.
+         * $().efx('supports', effect_name) returns true if effect_name defined.
          */
         supports: function(effect, event){
             
             return _drivers[effect] != undefined && ( event == undefined || _drivers[effect][event] != undefined )
+            
+        },
+    
+        /**
+         * $().efx('get', effect_name) returns the driver for the event, if it
+         * exists or false otherwise.
+         */
+        get: function(effect, event){
+            
+            return _EFX.supports(effect, event) ? _drivers[effect][event] : false
             
         },
         
@@ -235,7 +245,7 @@
         this.removeState = function(element, name){
 
             if(this.inState(element, name))
-                element.attr('data-'+effect, $.grep(this.getState(element), function(value) { return value != name }).join(' '))
+                element.attr('data-'+effect, $.grep(this.getState(element), function(value) {return value != name}).join(' '))
 
         }
         

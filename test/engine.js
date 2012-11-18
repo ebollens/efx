@@ -157,7 +157,6 @@ test("Effect resolved to ignore undefined effect", function() {
     
 });
 
-
 test("Driver state functions", function() {
     
     $('<button/>', {'id': 'trigger', 'data-target': 'target'}).appendTo('#test')  
@@ -179,5 +178,28 @@ test("Driver state functions", function() {
     $('#trigger').click()
     
     equal($('#trigger').attr('data-test'), 'exec', 'State does not duplicate on multiple sets')
+    
+});
+
+test("Driver bind existing driver to new event", function() {
+    
+    $('<button/>', {'id': 'trigger', 'data-target': 'target'}).appendTo('#test')
+    $('<div/>', {'id': 'target', 'data-effect': 'test'}).appendTo('#test')
+
+    equal($().efx('get', 'blah', 'click'), false, 'Get driver for non-existent effect')
+    equal($().efx('get', 'test', 'blah'), false, 'Get driver for non-existent event')
+    
+    var driver = $().efx('get', 'test', 'click')
+    
+    ok(driver, 'Get driver for existent (effect,event) tuple')
+
+    $().efx('add', 'test', 'mousedown', driver)
+
+    $('#test').efx()
+    
+    $('#trigger').trigger('mousedown')
+    
+    ok($('#trigger').data('execute'), 'Trigger executed')
+    ok($('#target').data('execute'), 'Target executed')
     
 });
