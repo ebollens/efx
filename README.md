@@ -144,17 +144,19 @@ the visibility on target(s). If a target is show, then it hides it, while if a
 target is hidden, then it shows it. This driver has no side-effects on the
 container or any of another elements besides the target.
 
-The `data-toggle` attribute supports two visibility states:
+The `data-toggle` attribute supports two visibility states on targets:
 
 * `show` sets a target to be shown
 * `hide` sets a target to be hidden (default state)
 
-The `data-toggle` attribute also supports behavior states:
+The `data-toggle` attribute also supports behavior states on the container:
 
 * `slide` slides the content up and down rather than just showing and hiding it
 * `fade` fades the content in and out rather than just showing and hiding it
 
-Both a visibility and a behavior state may be specified at the same time.
+If the target is also the container (the `data-effect` attribute is assigned 
+directly on the target, then both a visibility and a behavior state may be 
+specified at the same time.
 
 A simple example:
 
@@ -184,6 +186,76 @@ also starting with the content visible in this particular example:
 ```html
 <button data-target="element">Trigger</button>
 <div id="element" data-effect="toggle" data-toggle="fade show">Target</div>
+```
+
+### Accordion
+
+The `accordion` driver is similar to `toggle` in that it handles visibility.
+However, as opposed to `trigger`, the `accordion` driver hides all other 
+targets in the `data-effect="accordion"` container. It will not, however,
+affect any elements that are not targets of `data-effect`, allowing one to
+specify other elements within the accordion that are not affected by the effect.
+
+The `data-accordion` attribute supports two visibility states on targets:
+
+* `show` sets a target to be shown
+* `hide` sets a target to be hidden (default state)
+
+The `data-toggle` attribute also supports behavior states on the container:
+
+* `slide` slides the content up and down rather than just showing and hiding 
+it. The slide effect simultaneously slides up any non-targeted contents while
+sliding down any targeted contents.
+* `fade` fades the content in and out rather than just showing and hiding it. 
+In this case, the non-targeted contents will be hidden without a fade, because
+otherwise this creates a jarring effect on the page layout.
+
+A visibility and behavior state should not be specified on the same element,
+because a target should not also be the container. If a target is the same
+as a container, then the `toggle` driver should be used instead.
+
+A simple example:
+
+```html
+<div data-effect="accordion">
+    <div data-target="element1">Trigger 1</div>
+    <div id="element1">Target 1</div>
+    <div data-target="element2">Trigger 2</div>
+    <div id="element2">Target 2</div>
+</div>
+```
+
+Triggers may also reside outside of the accordion container:
+
+```html
+<div data-target="element1">Trigger 1</div>
+<div data-target="element2">Trigger 2</div>
+<div data-effect="accordion">
+    <div id="element1">Target 1</div>
+    <div id="element2">Target 2</div>
+</div>
+```
+
+An example that slides the content in and out rather than showing and hiding it:
+
+```html
+<div data-effect="accordion" data-accordion="slide">
+    <div data-target="element1">Trigger 1</div>
+    <div id="element1">Target 1</div>
+    <div data-target="element2">Trigger 2</div>
+    <div id="element2">Target 2</div>
+</div>
+```
+
+An example that fades the content in and out rather than showing and hiding it:
+
+```html
+<div data-effect="accordion" data-accordion="fade">
+    <div data-target="element1">Trigger 1</div>
+    <div id="element1">Target 1</div>
+    <div data-target="element2">Trigger 2</div>
+    <div id="element2">Target 2</div>
+</div>
 ```
 
 ## Credits
