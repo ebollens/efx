@@ -205,6 +205,65 @@
             </div>
         
         </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;button data-target="ex7"&gt;&lt;!-- trigger text --&gt;&lt;/button&gt;
+
+&lt;div id="ex7" data-effect="toggle" data-toggle="fade"&gt;
+    &lt;!-- toggled content --&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><button data-target="ex7" class="btn">Toggle</button></p>
+                    <div id="ex7" data-effect="toggle" data-toggle="fade" class="well">
+                        This is a simple content area with visibility toggled 
+                        by pressing trigger with <code>data-target="ex5"</code>.
+                        It also has a state of <code>data-toggle="slide"</code>,
+                        which means that the toggle effect will slide the
+                        content rather than simply show/hide it.
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;button data-target="ex8"&gt;&lt;!-- trigger text --&gt;&lt;/button&gt;
+
+&lt;div id="ex8" data-effect="toggle" data-toggle="fade show"&gt;
+    &lt;!-- toggled content --&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><button data-target="ex8" class="btn">Basic Toggle</button></p>
+                    <div id="ex8" data-effect="toggle" data-toggle="fade show" class="well">
+                        This is a simple content area with visibility toggled 
+                        by pressing trigger with <code>data-target="ex5"</code>.
+                        This content area begins visible because of the toggle
+                        property <code>data-toggle="show"</code>. It also has a 
+                        state of <code>data-toggle="slide"</code>, which means 
+                        that the toggle effect will slide the content rather 
+                        than simply show/hide it.
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        </div>
         
         <script>
             $(document).efx('init')

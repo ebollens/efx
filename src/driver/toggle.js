@@ -7,7 +7,7 @@
             trigger   = data.trigger;
     
         var hasModifier = false;
-        $.each(['slide'], function(){
+        $.each(['slide','fade'], function(){
             if(_.inState(container, this+''))
                 hasModifier = true;
         })
@@ -18,7 +18,12 @@
         if(!_.inState(target, 'show'))
             _.addState(target, 'hide')
         
-        if(_.inState(container, 'slide') && _.inState(target, 'hide'))
+        if( _.inState(target, 'hide') && (
+                _.inState(container, 'slide') 
+            || 
+                _.inState(container, 'fade')
+            )
+        )
             target.hide();
 
     });
@@ -37,6 +42,8 @@
             
             if(_.inState(container, 'slide'))
                 target.slideUp();
+            else if(_.inState(container, 'fade'))
+                target.fadeOut();
             
         }else{
             
@@ -45,6 +52,8 @@
             
             if(_.inState(container, 'slide'))
                 target.slideDown();
+            else if(_.inState(container, 'fade'))
+                target.fadeIn();
             
         }
 

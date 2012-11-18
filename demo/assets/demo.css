@@ -1,3 +1,8 @@
-pre.prettyprint { box-sizing: border-box; }
+pre.prettyprint { 
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
 
-.linenums { margin: 0; }
+.linenums { 
+    margin: 0; 
+}
