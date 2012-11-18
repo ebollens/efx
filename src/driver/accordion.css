@@ -1,0 +1,5 @@
+[data-accordion~="basic"][data-accordion~="hide"],    /* target is container */
+[data-accordion~="basic"] [data-accordion~="hide"]    /* target is contained */
+{
+    display: none;
+}

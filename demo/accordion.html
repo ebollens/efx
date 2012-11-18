@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        
+        <title>Demo: Toggle</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <!-- Efx engine -->
+        <script src="assets/jquery.js"></script>
+        <script src="../src/engine.js"></script>
+        
+        <!-- Efx driver: Toggle -->
+        <script src="../src/driver/accordion.js"></script>
+        <link rel="stylesheet" href="../src/driver/accordion.css">
+        
+        <!-- Assets used for demo presentation only -->
+        <script src="assets/jquery.syntaxhighlighter.js"></script>
+        <link   href="assets/bootstrap.css" rel="stylesheet">
+        <link   href="assets/demo.css" rel="stylesheet">
+        
+    </head>
+    
+    <body>
+        
+        <div class="container-fluid">
+        
+            <h1>Demo: Accordion</h1>
+            
+            <p>The <code>accordion</code> library provides a target-trigger
+            interaction whereby, when one of the triggering states is pressed,
+            all targets except for the trigger will be hidden.</p>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;div data-effect="accordion"&gt;
+    &lt;div data-target="ex1"&gt;
+        &lt;!-- Trigger 1 --&gt;&lt;/div&gt;
+    &lt;div id="ex1"&gt;
+        &lt;!-- Target 1 --&gt;&lt;/div&gt;
+    &lt;div data-target=".ex2"&gt;
+        &lt;!-- Trigger 2 --&gt;&lt;/div&gt;
+    &lt;div class="ex2"&gt;
+        &lt;!-- Target 2 --&gt;&lt;/div&gt;
+    &lt;div class="ex2"&gt;
+        &lt;!-- Target 2 --&gt;&lt;/div&gt;
+    &lt;div data-target="ex3"&gt;
+        &lt;!-- Trigger 3 --&gt;&lt;/div&gt;
+    &lt;div id="ex3"&gt;
+        &lt;!-- Target 3 --&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <div class="well" data-effect="accordion">
+                        <h4><a href="#" data-target="ex1">First</a></h4>
+                        <div id="ex1">First accordion target</div>
+                        <h4><a href="#" data-target=".ex2">Second</a></h4>
+                        <div class="ex2">Second accordion target</div>
+                        <div class="ex2">with multiple elements</div>
+                        <h4><a href="#" data-target="ex3">Third</a></h4>
+                        <div id="ex3">Third accordion target</div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;div data-effect="accordion" data-accordion="slide"&gt;
+    &lt;div data-target="ex1"&gt;
+        &lt;!-- Trigger 1 --&gt;&lt;/div&gt;
+    &lt;div id="ex1"&gt;
+        &lt;!-- Target 1 --&gt;&lt;/div&gt;
+    &lt;div data-target="ex2"&gt;
+        &lt;!-- Trigger 2 --&gt;&lt;/div&gt;
+    &lt;div id="ex2"&gt;
+        &lt;!-- Target 2 --&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <div class="well" data-effect="accordion" data-accordion="slide">
+                        <h4><a href="#" data-target="ex4">First</a></h4>
+                        <div id="ex4">First accordion target</div>
+                        <h4><a href="#" data-target="ex5">Second</a></h4>
+                        <div id="ex5">Second accordion target</div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;div data-effect="accordion" data-accordion="fade"&gt;
+    &lt;div data-target="ex1"&gt;
+        &lt;!-- Trigger 1 --&gt;&lt;/div&gt;
+    &lt;div id="ex1"&gt;
+        &lt;!-- Target 1 --&gt;&lt;/div&gt;
+    &lt;div data-target="ex2"&gt;
+        &lt;!-- Trigger 2 --&gt;&lt;/div&gt;
+    &lt;div id="ex2"&gt;
+        &lt;!-- Target 2 --&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <div class="well" data-effect="accordion" data-accordion="fade">
+                        <h4><a href="#" data-target="ex6">First</a></h4>
+                        <div id="ex6">First accordion target</div>
+                        <h4><a href="#" data-target="ex7">Second</a></h4>
+                        <div id="ex7">Second accordion target</div>
+                    </div>
+                </div>
+                
+            </div>
+        
+        </div>
+        
+        <script>
+            $('.well a').click(function(e){
+                e.preventDefault();
+            })
+            $(document).efx('init')
+        </script>
+        
+        <script type="text/javascript">$.SyntaxHighlighter.init();</script>
+        
+    </body>
+    
+</html>
