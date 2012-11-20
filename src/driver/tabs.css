@@ -1,0 +1,5 @@
+[data-tabs~="basic"][data-tabs~="hide"],    /* target is container */
+[data-tabs~="basic"] [data-tabs~="hide"]    /* target is contained */
+{
+    display: none;
+}

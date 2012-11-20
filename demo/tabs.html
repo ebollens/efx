@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        
+        <title>Demo: Tabs</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <!-- Efx engine -->
+        <script src="assets/jquery.js"></script>
+        <script src="../src/engine.js"></script>
+        
+        <!-- Efx driver: Toggle -->
+        <script src="../src/driver/tabs.js"></script>
+        <link rel="stylesheet" href="../src/driver/tabs.css">
+        
+        <!-- Assets used for demo presentation only -->
+        <script src="assets/jquery.syntaxhighlighter.js"></script>
+        <link   href="assets/bootstrap.css" rel="stylesheet">
+        <link   href="assets/demo.css" rel="stylesheet">
+        
+    </head>
+    
+    <body>
+        
+        <div class="container-fluid">
+        
+            <h1>Demo: Tabs</h1>
+            
+            <p>The <code>tabs</code> library provides a target-trigger
+            interaction whereby, when one of the triggering states is pressed,
+            the target becomes visible and all others are hidden. With the tabs 
+            library, it is possible to achieve effects like an accordion.</p>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;div data-target="ex1"&gt;
+    &lt;!-- Trigger 1 --&gt;&lt;/div&gt;
+&lt;div data-target="ex2"&gt;
+    &lt;!-- Trigger 2 --&gt;&lt;/div&gt;
+&lt;div data-effect="tabs"&gt;
+    &lt;div id="ex1" data-tabs="show"&gt;
+        &lt;!-- Target 1 --&gt;&lt;/div&gt;
+    &lt;div id="ex2"&gt;
+        &lt;!-- Target 2 --&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><a href="#" data-target="ex1">First</a> | <a href="#" data-target="ex2">Second</a></p>
+                    <div class="well" data-effect="tabs">
+                        <div id="ex1" data-tabs="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum, justo a tincidunt tincidunt, neque tortor egestas nulla, a ornare dolor lectus ac nulla. Donec volutpat, eros a molestie faucibus, enim libero ornare ipsum, ut venenatis ligula metus tristique nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris ut sem ipsum, eget eleifend lacus. Praesent ultricies ligula ut felis ultricies scelerisque non sed tellus. Nulla cursus gravida bibendum. Morbi suscipit tempor odio ut lacinia. Aliquam erat volutpat. In sit amet lacus tellus, ac facilisis nunc. Fusce consequat dictum tellus et vulputate. Maecenas scelerisque tortor a neque consectetur eget dapibus purus sollicitudin. Nunc adipiscing, odio sed elementum consectetur, dui nisl consectetur metus, quis ornare enim erat eget nibh. Cras non mauris metus, sed lobortis nibh.</div>
+                        <div id="ex2">Duis ut magna dolor, ut rhoncus erat. Morbi porta turpis a justo adipiscing ac iaculis tortor volutpat. Proin sapien felis, egestas ut congue quis, dignissim quis eros. Mauris a ornare nisl. Pellentesque scelerisque magna ac massa molestie eleifend fermentum massa porta. Morbi malesuada metus vel lorem dignissim ac suscipit leo feugiat. Morbi non magna eu arcu porttitor venenatis. Maecenas a nibh in tortor egestas adipiscing. Praesent ut diam nunc, vitae porttitor ante. Nulla libero nisi, rutrum nec luctus a, tincidunt et risus. In orci nisl, scelerisque sit amet fringilla ut, sagittis a ante. Vivamus eros enim, interdum id gravida in, tempor id justo. Sed ultricies hendrerit purus feugiat feugiat.</div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;div data-target="ex1"&gt;
+    &lt;!-- Trigger 1 --&gt;&lt;/div&gt;
+&lt;div data-target="ex2"&gt;
+    &lt;!-- Trigger 2 --&gt;&lt;/div&gt;
+&lt;div data-effect="tabs" data-tabs="fade"&gt;
+    &lt;div id="ex1" data-tabs="show"&gt;
+        &lt;!-- Target 1 --&gt;&lt;/div&gt;
+    &lt;div id="ex2"&gt;
+        &lt;!-- Target 2 --&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><a href="#" data-target="ex3">First</a> | <a href="#" data-target="ex4">Second</a></p>
+                    <div class="well" data-effect="tabs" data-tabs="fade">
+                        <div id="ex3" data-tabs="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum, justo a tincidunt tincidunt, neque tortor egestas nulla, a ornare dolor lectus ac nulla. Donec volutpat, eros a molestie faucibus, enim libero ornare ipsum, ut venenatis ligula metus tristique nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris ut sem ipsum, eget eleifend lacus. Praesent ultricies ligula ut felis ultricies scelerisque non sed tellus. Nulla cursus gravida bibendum. Morbi suscipit tempor odio ut lacinia. Aliquam erat volutpat. In sit amet lacus tellus, ac facilisis nunc. Fusce consequat dictum tellus et vulputate. Maecenas scelerisque tortor a neque consectetur eget dapibus purus sollicitudin. Nunc adipiscing, odio sed elementum consectetur, dui nisl consectetur metus, quis ornare enim erat eget nibh. Cras non mauris metus, sed lobortis nibh.</div>
+                        <div id="ex4">Duis ut magna dolor, ut rhoncus erat. Morbi porta turpis a justo adipiscing ac iaculis tortor volutpat. Proin sapien felis, egestas ut congue quis, dignissim quis eros. Mauris a ornare nisl. Pellentesque scelerisque magna ac massa molestie eleifend fermentum massa porta. Morbi malesuada metus vel lorem dignissim ac suscipit leo feugiat. Morbi non magna eu arcu porttitor venenatis. Maecenas a nibh in tortor egestas adipiscing. Praesent ut diam nunc, vitae porttitor ante. Nulla libero nisi, rutrum nec luctus a, tincidunt et risus. In orci nisl, scelerisque sit amet fringilla ut, sagittis a ante. Vivamus eros enim, interdum id gravida in, tempor id justo. Sed ultricies hendrerit purus feugiat feugiat.</div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            
+            <div class="row-fluid">
+                
+                <div class="span6">
+                    <pre class="highlight not-bootstrap">
+&lt;div data-target="ex1"&gt;
+    &lt;!-- Trigger 1 --&gt;&lt;/div&gt;
+&lt;div data-target="ex2"&gt;
+    &lt;!-- Trigger 2 --&gt;&lt;/div&gt;
+&lt;div data-effect="tabs" data-tabs="slide"&gt;
+    &lt;div id="ex1" data-tabs="show"&gt;
+        &lt;!-- Target 1 --&gt;&lt;/div&gt;
+    &lt;div id="ex2"&gt;
+        &lt;!-- Target 2 --&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </pre>
+                </div>
+                
+                <div class="span6">
+                    <p><a href="#" data-target="ex5">First</a> | <a href="#" data-target="ex6">Second</a></p>
+                    <div class="well" data-effect="tabs" data-tabs="slide">
+                        <div id="ex5" data-tabs="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum, justo a tincidunt tincidunt, neque tortor egestas nulla, a ornare dolor lectus ac nulla. Donec volutpat, eros a molestie faucibus, enim libero ornare ipsum, ut venenatis ligula metus tristique nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris ut sem ipsum, eget eleifend lacus. Praesent ultricies ligula ut felis ultricies scelerisque non sed tellus. Nulla cursus gravida bibendum. Morbi suscipit tempor odio ut lacinia. Aliquam erat volutpat. In sit amet lacus tellus, ac facilisis nunc. Fusce consequat dictum tellus et vulputate. Maecenas scelerisque tortor a neque consectetur eget dapibus purus sollicitudin. Nunc adipiscing, odio sed elementum consectetur, dui nisl consectetur metus, quis ornare enim erat eget nibh. Cras non mauris metus, sed lobortis nibh.</div>
+                        <div id="ex6">Duis ut magna dolor, ut rhoncus erat. Morbi porta turpis a justo adipiscing ac iaculis tortor volutpat. Proin sapien felis, egestas ut congue quis, dignissim quis eros. Mauris a ornare nisl. Pellentesque scelerisque magna ac massa molestie eleifend fermentum massa porta. Morbi malesuada metus vel lorem dignissim ac suscipit leo feugiat. Morbi non magna eu arcu porttitor venenatis. Maecenas a nibh in tortor egestas adipiscing. Praesent ut diam nunc, vitae porttitor ante. Nulla libero nisi, rutrum nec luctus a, tincidunt et risus. In orci nisl, scelerisque sit amet fringilla ut, sagittis a ante. Vivamus eros enim, interdum id gravida in, tempor id justo. Sed ultricies hendrerit purus feugiat feugiat.</div>
+                    </div>
+                </div>
+                
+            </div>
+        
+        </div>
+        
+        <script>
+            $('.container-fluid a').click(function(e){
+                e.preventDefault();
+            })
+            $(document).efx('init')
+        </script>
+        
+        <script type="text/javascript">$.SyntaxHighlighter.init();</script>
+        
+    </body>
+    
+</html>
