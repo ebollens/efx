@@ -147,12 +147,17 @@ container or any of another elements besides the target.
 The `data-toggle` attribute supports two visibility states on targets:
 
 * `show` sets a target to be shown
-* `hide` sets a target to be hidden (default state)
+* `hide` sets a target to be hidden
+
+The `hide` visibility is the default behavior.
 
 The `data-toggle` attribute also supports behavior states on the container:
 
-* `slide` slides the content up and down rather than just showing and hiding it
-* `fade` fades the content in and out rather than just showing and hiding it
+* `basic` hides and shows the content without any effects.
+* `slide` slides the content up and down rather than just showing and hiding it.
+* `fade` fades the content in and out rather than just showing and hiding it.
+
+The `basic` behavior is the default behavior.
 
 If the target is also the container (the `data-effect` attribute is assigned 
 directly on the target, then both a visibility and a behavior state may be 
@@ -191,7 +196,7 @@ also starting with the content visible in this particular example:
 ### Accordion
 
 The `accordion` driver is similar to `toggle` in that it handles visibility.
-However, as opposed to `trigger`, the `accordion` driver hides all other 
+However, as opposed to `toggle`, the `accordion` driver hides all other 
 targets in the `data-effect="accordion"` container. It will not, however,
 affect any elements that are not targets of `data-effect`, allowing one to
 specify other elements within the accordion that are not affected by the effect.
@@ -199,16 +204,21 @@ specify other elements within the accordion that are not affected by the effect.
 The `data-accordion` attribute supports two visibility states on targets:
 
 * `show` sets a target to be shown
-* `hide` sets a target to be hidden (default state)
+* `hide` sets a target to be hidden
+
+The `hide` visibility is the default behavior.
 
 The `data-toggle` attribute also supports behavior states on the container:
 
+* `basic` simply hides and shows the content without any effects.
 * `slide` slides the content up and down rather than just showing and hiding 
 it. The slide effect simultaneously slides up any non-targeted contents while
 sliding down any targeted contents.
 * `fade` fades the content in and out rather than just showing and hiding it. 
 In this case, the non-targeted contents will be hidden without a fade, because
 otherwise this creates a jarring effect on the page layout.
+
+The `slide` behavior is the default behavior.
 
 A visibility and behavior state should not be specified on the same element,
 because a target should not also be the container. If a target is the same
@@ -258,15 +268,91 @@ An example that fades the content in and out rather than showing and hiding it:
 </div>
 ```
 
+### Tabs
+
+The `tabs` driver is similar to `toggle` in that it handles visibility.
+However, as opposed to `toggle`, the `tabs` driver hides all other 
+targets in the `data-effect="tabs"` container. It will not, however,
+affect any elements that are not targets of `data-effect`, allowing one to
+specify other elements within the tabs markup that are not affected by the 
+effect.
+
+The `data-tabs` attribute supports two visibility states on targets:
+
+* `show` sets a target to be shown
+* `hide` sets a target to be hidden
+
+The `hide` visibility is the default behavior.
+
+The `data-toggle` attribute also supports behavior states on the container:
+
+* `basic` simply hides and shows the content without any effects.
+* `slide` slides the content up and down rather than just showing and hiding 
+it. The slide effect simultaneously slides up any non-targeted contents while
+sliding down any targeted contents.
+* `fade` fades the content in and out rather than just showing and hiding it. 
+In this case, the non-targeted contents will be hidden without a fade, because
+otherwise this creates a jarring effect on the page layout.
+
+The `fade` behavior is the default behavior.
+
+A visibility and behavior state should not be specified on the same element,
+because a target should not also be the container. If a target is the same
+as a container, then the `toggle` driver should be used instead.
+
+A simple example:
+
+```html
+<div data-target="element1">Trigger 1</div>
+<div data-target="element2">Trigger 2</div>
+<div data-effect="tabs">
+    <div id="element1">Target 1</div>
+    <div id="element2">Target 2</div>
+</div>
+```
+
+Triggers may also reside within the tabs container:
+
+```html
+<div data-effect="tabs">
+    <div data-target="element1">Trigger 1</div>
+    <div data-target="element2">Trigger 2</div>
+    <div id="element1">Target 1</div>
+    <div id="element2">Target 2</div>
+</div>
+```
+
+An example that just hides/shows the content without fading it:
+
+```html
+<div data-target="element1">Trigger 1</div>
+<div data-target="element2">Trigger 2</div>
+<div data-effect="tabs" data-tabs="basic">
+    <div id="element1">Target 1</div>
+    <div id="element2">Target 2</div>
+</div>
+```
+
+An example that slides the content in and out rather than fading it:
+
+```html
+<div data-target="element1">Trigger 1</div>
+<div data-target="element2">Trigger 2</div>
+<div data-effect="tabs" data-tabs="slide">
+    <div id="element1">Target 1</div>
+    <div id="element2">Target 2</div>
+</div>
+```
+
 ## Credits
 
 Efx is written and maintained by Eric Bollens.
 
 Efx is implemented as a jQuery (http://jquery.com) module.
 
-For unit tests, Efx uses the QUnit (http://qunitjs.com) library.
+In unit tests, Efx uses the QUnit (http://qunitjs.com) library.
 
-For its demos, Efx uses Twitter Bootstrap (http://twitter.github.com/bootstrap)
+In its demos, Efx uses Twitter Bootstrap (http://twitter.github.com/bootstrap)
 and the jQuery Syntax Highlighter (https://github.com/balupton/jquery-syntaxhighlighter)
 for presentational styles.
 
