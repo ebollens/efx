@@ -15,7 +15,7 @@
         })
         
         if(!hasModifier)
-            _.addState(container, 'basic')
+            _.addState(container, 'slide')
             
         if(!container.attr('id'))
             container.attr('id', '_accordion-'+counter++)
