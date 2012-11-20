@@ -9,7 +9,7 @@
             trigger   = data.trigger;
     
         var hasModifier = false;
-        $.each(['slide','fade'], function(){
+        $.each(['slide','fade','basic'], function(){
             if(_.inState(container, this+''))
                 hasModifier = true;
         })
