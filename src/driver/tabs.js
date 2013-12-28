@@ -25,6 +25,8 @@
         
         if(!_.inState(target, 'show'))
             _.addState(target, 'hide')
+        else
+            trigger.attr('data-active')
         
         _.addState(target, 'c['+container.attr('id')+']')
         _.addState(target, 't['+trigger.attr('id')+']')
@@ -53,6 +55,24 @@
                 target.slideDown();
             else if(_.inState(container, 'fade'))
                 target.fadeIn();
+
+            $.each(_.getState(target), function(idx,state){
+                var containerMatch = state.match(/^c\[(.*)\]$/);
+                if(containerMatch)
+                    $('[data-tabs~="'+state+'"]').each(function(){
+                        $.each(_.getState($(this)), function(idx,state){
+                            var targetMatch = state.match(/^t\[(.*)\]$/);
+                            if(targetMatch)
+                                $('#'+targetMatch[1]).removeAttr('data-active');
+                        })
+                    })
+            });
+
+            $.each(_.getState(target), function(idx,state){
+                var targetMatch = state.match(/^t\[(.*)\]$/);
+                if(targetMatch)
+                    $('#'+targetMatch[1]).attr('data-active', true);
+            });
             
             // Hide all the elements that are not targetted by this trigger
             $(container)
