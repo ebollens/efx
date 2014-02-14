@@ -344,6 +344,26 @@ An example that slides the content in and out rather than fading it:
 </div>
 ```
 
+## Development
+
+In all cases, you must run:
+
+```
+npm install
+```
+
+To run the tests, additionally run:
+
+```
+./node_modules/bower/bin/bower install
+```
+
+To compile the engine with base drivers, call grunt:
+
+```
+./node_modules/grunt-cli/bin/grunt
+```
+
 ## Credits
 
 Efx is written and maintained by Eric Bollens.

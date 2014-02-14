@@ -1,0 +1,38 @@
+{
+  "name": "efx",
+  "description": "Markup-driven trigger-target effects library with driver-based extensibility",
+  "version": "0.2.0",
+  "authors": [
+    { "name": "Eric Bollens", "email": "eric@eb.io"," homepage": "http://eb.io" }
+  ],
+  "keywords": [
+    "effects",
+    "extensible",
+    "jquery",
+    "markup",
+    "ui"
+  ],
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ebollens/efx.git"
+  },
+  "main": [
+    "src/engine.js",
+    "src/driver/accordion.js",
+    "src/driver/accordion.css",
+    "src/driver/tabs.js",
+    "src/driver/tabs.css",
+    "src/driver/toggle.js",
+    "src/driver/toggle.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.8.0",
+    "qunit": ">= 1.12.0"
+  }
+}
