@@ -9,17 +9,17 @@ block 'efx', :path => 'src' do |efx|
     dependency efx.route 'engine'
 
     block 'accordion' do
-      scss_file 'accordion.scss'
+      scss_file 'accordion.css'
       js_file 'accordion.js'
     end
 
     block 'tabs' do
-      scss_file 'tabs.scss'
+      scss_file 'tabs.css'
       js_file 'tabs.js'
     end
 
     block 'toggle' do
-      scss_file 'toggle.scss'
+      scss_file 'toggle.css'
       js_file 'toggle.js'
     end
 
