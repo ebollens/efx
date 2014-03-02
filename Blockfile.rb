@@ -1,6 +1,28 @@
+##
+## WebBlocks Blockfile (experimental)
+## https://github.com/WebBlocks/WebBlocks
+##
+
+##
+## INCLUDES
+##
+## When building with WebBlocks directly from this repo, rather than when building as part of
+## a larger set of blocks, uncomment include lines below to specify build:
+##
+
+#include 'efx', 'engine'
+#include 'efx', 'driver', 'accordion'
+#include 'efx', 'driver', 'tabs'
+#include 'efx', 'driver', 'toggle'
+
+
+##
+## DEFINITION
+##
+
 block 'efx', :path => 'src' do |efx|
 
-  block 'engine', :require => true do
+  block 'engine', :required => true do
     js_file 'engine.js'
   end
 
