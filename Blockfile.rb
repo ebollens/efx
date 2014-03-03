@@ -9,7 +9,8 @@
 
 block 'efx', :path => 'src' do |efx|
 
-  block 'engine' do
+  block 'engine', :required => true do
+    loose_dependency framework.route 'jquery'
     js_file 'engine.js'
   end
 
@@ -35,17 +36,3 @@ block 'efx', :path => 'src' do |efx|
   end
 
 end
-
-
-##
-## INCLUDES
-##
-## When building with WebBlocks directly from this repo, rather than when building as part of
-## a larger set of blocks, uncomment include lines below to specify build (or use the --include
-# flag):
-##
-
-#include 'efx', 'engine'
-#include 'efx', 'driver', 'accordion'
-#include 'efx', 'driver', 'tabs'
-#include 'efx', 'driver', 'toggle'

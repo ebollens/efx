@@ -346,9 +346,12 @@ An example that slides the content in and out rather than fading it:
 
 ## Development
 
-In all cases, you must run:
+#### Setup
+
+Start by installing dependencies:
 
 ```
+bundle
 npm install
 ```
 
@@ -358,23 +361,53 @@ To run the tests, additionally run:
 ./node_modules/bower/bin/bower install
 ```
 
-To compile the engine with base drivers, call grunt:
+#### Compiling
+
+The compilation of assets is handled via [WebBlocks](https://github.com/WebBlocks/WebBlocks).
+
+The default build includes only the engine (no different than copying `src/engine.js`):
 
 ```
-./node_modules/grunt-cli/bin/grunt
+bundle exec blocks build
+```
+
+To create a build with a driver:
+
+```
+bundle exec blocks build --include efx driver tabs
+```
+
+To create a build with multiple drivers:
+
+```
+bundle exec blocks build --include efx driver tabs, efx driver toggle
+```
+
+To add jQuery to this build:
+
+```
+bundle exec blocks build --include efx driver tabs, efx driver toggle, jquery
+```
+
+To create a build with all drivers (can add jQuery the same way as above):
+
+```
+bundle exec blocks build --include efx driver
 ```
 
 ## Credits
 
 Efx is written and maintained by Eric Bollens.
 
-Efx is implemented as a jQuery (http://jquery.com) module.
+Efx is implemented as a [jQuery](http://jquery.com) module.
 
-In unit tests, Efx uses the QUnit (http://qunitjs.com) library.
+In unit tests, Efx uses the [QUnit](http://qunitjs.com) library.
 
-In its demos, Efx uses Twitter Bootstrap (http://twitter.github.com/bootstrap)
-and the jQuery Syntax Highlighter (https://github.com/balupton/jquery-syntaxhighlighter)
+In its demos, Efx uses [Twitter Bootstrap](http://twitter.github.com/bootstrap)
+and the [jQuery Syntax Highlighter](https://github.com/balupton/jquery-syntaxhighlighter)
 for presentational styles.
+
+For compilation, Efx uses [WebBlocks](https://github.com/WebBlocks/WebBlocks).
 
 ## License
 

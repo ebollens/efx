@@ -32,7 +32,8 @@
     "bower_components"
   ],
   "dependencies": {
-    "jquery": ">= 1.8.0"
+    "jquery": ">= 1.8.0",
+    "WebBlocks-wrapper-jquery": "https://github.com/WebBlocks/wrapper-jquery.git"
   },
   "devDependencies": {
     "qunit": ">= 1.12.0"
